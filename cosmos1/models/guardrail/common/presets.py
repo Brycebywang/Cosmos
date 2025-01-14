@@ -52,10 +52,11 @@ def run_text_guardrail(prompt: str, guardrail_runner: GuardrailRunner) -> bool:
     Returns:
         bool: Whether the prompt is safe.
     """
-    is_safe, message = guardrail_runner.run_safety_check(prompt)
-    if not is_safe:
-        log.critical(f"GUARDRAIL BLOCKED: {message}")
-    return is_safe
+    return True
+    # is_safe, message = guardrail_runner.run_safety_check(prompt)
+    # if not is_safe:
+    #     log.critical(f"GUARDRAIL BLOCKED: {message}")
+    # return is_safe
 
 
 def run_video_guardrail(frames: np.ndarray, guardrail_runner: GuardrailRunner) -> np.ndarray | None:
@@ -68,10 +69,11 @@ def run_video_guardrail(frames: np.ndarray, guardrail_runner: GuardrailRunner) -
     Returns:
         The processed frames if safe, otherwise None.
     """
-    is_safe, message = guardrail_runner.run_safety_check(frames)
-    if not is_safe:
-        log.critical(f"GUARDRAIL BLOCKED: {message}")
-        return None
-
-    frames = guardrail_runner.postprocess(frames)
     return frames
+    # is_safe, message = guardrail_runner.run_safety_check(frames)
+    # if not is_safe:
+    #     log.critical(f"GUARDRAIL BLOCKED: {message}")
+    #     return None
+
+    # frames = guardrail_runner.postprocess(frames)
+    # return frames

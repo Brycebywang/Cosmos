@@ -77,6 +77,12 @@ def add_common_arguments(parser):
         help="Tokenizer weights directory relative to checkpoint_dir",
     )
     parser.add_argument(
+        "--text_enc_dir",
+        type=str,
+        default="models--google-t5--t5-11b/snapshots/90f37703b3334dfe9d2b009bfcbfbf1ac9d28ea3",
+        help="T5 weights directory relative to checkpoint_dir",
+    )
+    parser.add_argument(
         "--video_save_name",
         type=str,
         default="output",

@@ -28,6 +28,7 @@ from typing import Any, Callable, List, Literal, Optional, Tuple, Union
 import attrs
 import torch
 
+from tqdm import tqdm
 from cosmos1.models.diffusion.diffusion.functional.multi_step import get_multi_step_fn, is_multi_step_fn_supported
 from cosmos1.models.diffusion.diffusion.functional.runge_kutta import get_runge_kutta_fn, is_runge_kutta_fn_supported
 from cosmos1.utils.config import make_freezable
@@ -203,7 +204,7 @@ def fori_loop(lower: int, upper: int, body_fun: Callable[[int, Any], Any], init_
         The final result after all iterations.
     """
     val = init_val
-    for i in range(lower, upper):
+    for i in tqdm(range(lower, upper)):
         val = body_fun(i, val)
     return val
 

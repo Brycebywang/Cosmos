@@ -17,7 +17,7 @@
 outputs/
 checkpoints/*
 !checkpoints/README.md
-
+eval/output*
 # Data types
 *.jit
 *.pt

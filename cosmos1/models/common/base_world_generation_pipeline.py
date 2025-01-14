@@ -31,6 +31,7 @@ class BaseWorldGenerationPipeline(ABC):
         inference_type: str | None = None,
         checkpoint_dir: str | None = None,
         checkpoint_name: str | None = None,
+        text_enc_dir: str | None = None,
         enable_text_guardrail: bool = False,
         enable_video_guardrail: bool = False,
         offload_network: bool = False,
@@ -61,6 +62,7 @@ class BaseWorldGenerationPipeline(ABC):
         self.checkpoint_dir = checkpoint_dir
         self.checkpoint_name = checkpoint_name
         self.guardrail_dir = "Cosmos-1.0-Guardrail"
+        self.text_enc_dir = text_enc_dir
         self.enable_text_guardrail = enable_text_guardrail
         self.enable_video_guardrail = enable_video_guardrail
 
@@ -122,7 +124,7 @@ class BaseWorldGenerationPipeline(ABC):
         Returns:
             Loaded T5 text encoder model instance
         """
-        self.text_encoder = CosmosT5TextEncoder(cache_dir=self.checkpoint_dir)
+        self.text_encoder = CosmosT5TextEncoder(model_name=os.path.join(self.checkpoint_dir, self.text_enc_dir))
 
     def _load_text_guardrail(self):
         """Load text safety classifier models.
